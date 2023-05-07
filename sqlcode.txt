@@ -1,0 +1,43 @@
+CREATE TABLE Genre (
+Genre_Id SERIAL PRIMARY KEY,
+Name VARCHAR(40) NOT NULL);
+
+CREATE TABLE IF NOT EXISTS Singer (
+Singer_Id SERIAL PRIMARY KEY,
+Name varchar(40) not null,
+Name_singer_music_group varchar(40) not null,
+Genre_Id integer references Genre (Genre_Id)); 
+
+CREATE TABLE IF NOT EXISTS Album (
+Album_Id serial PRIMARY KEY,
+Name_album varchar(40) not null,
+Year_of_release date,
+Singer_Id integer references Singer(Singer_Id));
+
+CREATE TABLE IF NOT EXISTS Song (
+Song_Id SERIAL PRIMARY KEY,
+Name_track varchar(40) not null,
+Track_length numeric),
+Album_Id integer references Album(Album_Id));
+
+
+create table if not exists genre  (
+genre_id serial primary key,
+name varchar(40) not null);
+
+create table if not exists singer (
+singer_id serial primary key,
+name varchar(40) not null,
+genre_id integer references genre (genre_id)); 
+
+create table if not exists album (
+album_id serial primary key,
+name_album varchar(40) not null,
+year_of_release integer,
+singer_id integer references singer (singer_id));
+
+create table if not exists song (
+song_id serial primary key,
+name_track varchar(40) not null,
+track_length time,
+album_id integer references album (album_id));
